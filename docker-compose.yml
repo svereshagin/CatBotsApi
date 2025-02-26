@@ -23,7 +23,7 @@ services:
       - .:/app
     ports:
       - "8080:8080"
-    command: flask run --host=0.0.0.0 --port=8080 --reload
+    command:  python -m catbotsapi.app
     env_file: .env
     depends_on:
       postgres:

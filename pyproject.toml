@@ -1,0 +1,25 @@
+[project]
+name = "CatBotsApi"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "amadeo",email = "risefenixpuryfire@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+packages = [{include = "src"}]
+dependencies = [
+    "pytest (>=8.3.4,<9.0.0)",
+    "flask (>=3.1.0,<4.0.0)",
+    "flask-limiter (>=3.10.1,<4.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "pydantic (>=2.10.6,<3.0.0)",
+    "pydantic-settings (>=2.8.0,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+package-mode = false

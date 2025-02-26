@@ -1,15 +1,13 @@
 import psycopg2
 from psycopg2 import pool
 from typing import Optional, Any, List, Tuple, Dict
-from src.database_math import mean, mediana, mode
-from src.config import DB_CONFIG
+from catbotsapi.repository.database_math import mean, mediana, mode
+from catbotsapi.config import settings
 
 
 valid_attributes: List[str] = ["name", "color", "tail_length", "whiskers_length"]
 
-POOL = psycopg2.pool.SimpleConnectionPool(1,10,  database=DB_CONFIG["dbname"],
-                                          user=DB_CONFIG["user"], password=DB_CONFIG["password"],
-                                          port=DB_CONFIG["port"], host=DB_CONFIG["host"])
+POOL = psycopg2.pool.SimpleConnectionPool(1,10,  settings.DATABASE_URL)
 
 def save_stats(
     cursor,

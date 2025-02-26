@@ -1,7 +1,7 @@
 import pytest
 import time
 from flask import Flask, Response
-from app import app
+from catbotsapi.app import app
 from typing import Dict, List, Union
 
 
