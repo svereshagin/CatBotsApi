@@ -6,6 +6,7 @@ from catbotsapi.extensions import limiter
 
 cats_bp = Blueprint("cats", __name__)
 
+
 @cats_bp.route("/cats", methods=["GET"])
 @limiter.limit("600 per minute")
 def data_parser() -> tuple[Response, int]:
@@ -16,6 +17,7 @@ def data_parser() -> tuple[Response, int]:
 
     result = get_parsed_data(attribute, order, offset, limit)
     return jsonify(result[0]), result[1]
+
 
 @cats_bp.route("/cat", methods=["POST"])
 def add_info() -> tuple[dict[str, str], int] | tuple[Response, int]:

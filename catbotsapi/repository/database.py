@@ -7,11 +7,11 @@ from catbotsapi.config import settings
 
 valid_attributes: List[str] = ["name", "color", "tail_length", "whiskers_length"]
 
-POOL = psycopg2.pool.SimpleConnectionPool(1,10,  settings.DATABASE_URL)
+POOL = psycopg2.pool.SimpleConnectionPool(1, 10, settings.DATABASE_URL)
+
 
 def save_stats(
-    cursor,
-    stats: Tuple[float, float, List[float], float, float, List[float]]
+    cursor, stats: Tuple[float, float, List[float], float, float, List[float]]
 ) -> None:
     with cursor:
         cursor.execute(
@@ -23,7 +23,7 @@ def save_stats(
             %s, %s, %s, %s, %s, %s
         )
         """,
-        stats,
+            stats,
         )
 
 
@@ -128,8 +128,15 @@ def add_info_db(data: Dict[str, Any]) -> Tuple[Dict[str, Any], int]:
         POOL.putconn(conn)
 
 
-def get_parsed_data(attribute: str, order: str, offset: int, limit: int) -> tuple[dict[str, str], int] | tuple[
-    dict[str, str], int] | tuple[dict[str, str], int] | tuple[list[dict[str, Any]], int] | tuple[dict[str, str], int]:
+def get_parsed_data(
+    attribute: str, order: str, offset: int, limit: int
+) -> (
+    tuple[dict[str, str], int]
+    | tuple[dict[str, str], int]
+    | tuple[dict[str, str], int]
+    | tuple[list[dict[str, Any]], int]
+    | tuple[dict[str, str], int]
+):
     if attribute not in valid_attributes:
         return ({"error": "Invalid attribute"}, 400)
     if order not in ["asc", "desc"]:

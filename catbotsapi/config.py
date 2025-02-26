@@ -18,12 +18,14 @@ class Settings(BaseSettings):
     LOGIN: str
     PASSWORD: str
     """
-    model_config = SettingsConfigDict(extra='ignore', env_file=ENV_FILE_PATH)
+
+    model_config = SettingsConfigDict(extra="ignore", env_file=ENV_FILE_PATH)
     POSTGRES_DB: str
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_HOST: str
     POSTGRES_PORT: int
+
     @property
     def DATABASE_URL(self) -> str:
         return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
@@ -33,4 +35,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
